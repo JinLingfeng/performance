@@ -12,7 +12,6 @@ import {
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 
 // ========== Mock Data ==========
@@ -100,172 +99,120 @@ export default function AssessmentCyclePage() {
                 </div>
             </div>
 
-            <Tabs defaultValue="month" className="w-full">
-                <TabsList className="bg-slate-200/50 mb-6">
-                    <TabsTrigger value="month" className="data-[state=active]:bg-white">月度考核</TabsTrigger>
-                    <TabsTrigger value="quarter" className="data-[state=active]:bg-white text-slate-500">季度考核</TabsTrigger>
-                    <TabsTrigger value="half" className="data-[state=active]:bg-white text-slate-500">半年度考核</TabsTrigger>
-                    <TabsTrigger value="year" className="data-[state=active]:bg-white text-slate-500">年度考核</TabsTrigger>
-                </TabsList>
+            {/* Section 2: 周期实例 */}
+            <div>
+                <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                        <CalendarDays className="w-5 h-5 text-emerald-500" />
+                        考核周期实例
+                    </h2>
 
-                {/* ===== 月度考核 ===== */}
-                <TabsContent value="month" className="space-y-10 mt-0 outline-none">
-
-                    {/* Section 1: 生效模板 */}
-                    <div>
-                        <div className="flex items-center justify-between mb-4">
-                            <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-                                <FileText className="w-5 h-5 text-blue-500" />
-                                适用本维度的考核模板 ({activeTemplates.length})
-                            </h2>
-                            <Button variant="outline" size="sm" className="bg-white">
-                                <Plus className="w-3.5 h-3.5 mr-1" />
-                                绑定更多模板
-                            </Button>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                            {activeTemplates.map(tpl => (
-                                <Card key={tpl.id} className="shadow-sm border-slate-200 hover:border-blue-300 transition-colors cursor-default">
-                                    <div className="p-3">
-                                        <Badge variant="secondary" className="font-normal text-[10px] bg-slate-100 text-slate-600 mb-2">
-                                            {tpl.dept}
-                                        </Badge>
-                                        <h3 className="text-sm font-semibold text-slate-800 leading-snug line-clamp-2" title={tpl.name}>
-                                            {tpl.name}
-                                        </h3>
-                                        <p className="text-[10px] text-slate-400 mt-2">生效于: {tpl.updateAt}</p>
-                                    </div>
-                                </Card>
-                            ))}
-                        </div>
+                    <div className="flex items-center gap-2 text-sm text-blue-600 bg-blue-50 px-3 py-1.5 rounded-md border border-blue-100">
+                        <Info className="w-4 h-4" />
+                        每月25日系统将自动生成下一考核周期的实例，并绑定当前全部生效模板
                     </div>
+                </div>
 
-                    {/* Section 2: 周期实例 */}
-                    <div>
-                        <div className="flex items-center justify-between mb-4">
-                            <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-                                <CalendarDays className="w-5 h-5 text-emerald-500" />
-                                考核周期实例
-                            </h2>
-
-                            <div className="flex items-center gap-2 text-sm text-blue-600 bg-blue-50 px-3 py-1.5 rounded-md border border-blue-100">
-                                <Info className="w-4 h-4" />
-                                每月25日系统将自动生成下一考核周期的实例，并绑定当前全部生效模板
-                            </div>
-                        </div>
-
-                        <div className="grid gap-4">
-                            {cycles.map((cycle) => (
-                                <Card key={cycle.id} className={`shadow-sm overflow-hidden border-l-4 ${cycle.stage === 'goal_setting' ? 'border-l-amber-500 bg-amber-50/10' : 'border-l-slate-200'}`}>
-                                    <CardContent className="p-0">
-                                        <div className="flex flex-col lg:flex-row">
-                                            {/* Left Main Info */}
-                                            <div className="flex-1 p-6 border-b lg:border-b-0 lg:border-r border-slate-100">
-                                                <div className="flex justify-between items-start mb-4">
-                                                    <div>
-                                                        <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                                                            {cycle.name}
-                                                        </h3>
-                                                        <div className="flex flex-col md:flex-row md:items-center gap-y-2 gap-x-6 mt-3 text-sm text-slate-500">
-                                                            <div className="flex items-center text-slate-600 font-medium">
-                                                                <CalendarDays className="mr-1.5 h-4 w-4 text-slate-400" />
-                                                                {cycle.period}
-                                                            </div>
-                                                            <div className="flex items-start">
-                                                                <Clock className="mr-1.5 h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                                                                <div>
-                                                                    <span className="text-slate-500">包含 {cycle.templateNames.length} 个考核模板:</span>
-                                                                    <p className="text-xs text-slate-700 font-medium line-clamp-1 mt-0.5" title={cycle.templateNames.join(", ")}>
-                                                                        {cycle.templateNames.join(", ")}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
+                <div className="grid gap-4">
+                    {cycles.map((cycle) => (
+                        <Card key={cycle.id} className={`shadow-sm overflow-hidden border-l-4 ${cycle.stage === 'goal_setting' ? 'border-l-amber-500 bg-amber-50/10' : 'border-l-slate-200'}`}>
+                            <CardContent className="p-0">
+                                <div className="flex flex-col lg:flex-row">
+                                    {/* Left Main Info */}
+                                    <div className="flex-1 p-6 border-b lg:border-b-0 lg:border-r border-slate-100">
+                                        <div className="flex justify-between items-start mb-4">
+                                            <div>
+                                                <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                                                    {cycle.name}
+                                                </h3>
+                                                <div className="flex flex-col md:flex-row md:items-center gap-y-2 gap-x-6 mt-3 text-sm text-slate-500">
+                                                    <div className="flex items-center text-slate-600 font-medium">
+                                                        <CalendarDays className="mr-1.5 h-4 w-4 text-slate-400" />
+                                                        {cycle.period}
+                                                    </div>
+                                                    <div className="flex items-start">
+                                                        <Clock className="mr-1.5 h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
+                                                        <div>
+                                                            <span className="text-slate-500">包含 {cycle.templateNames.length} 个考核模板:</span>
+                                                            <p className="text-xs text-slate-700 font-medium line-clamp-1 mt-0.5" title={cycle.templateNames.join(", ")}>
+                                                                {cycle.templateNames.join(", ")}
+                                                            </p>
                                                         </div>
                                                     </div>
-                                                    {getStageBadge(cycle.stage)}
                                                 </div>
-
-                                                {/* Sub Progress if in goal setting */}
-                                                {cycle.stage === 'goal_setting' && (
-                                                    <div className="mt-4 bg-slate-50 rounded-lg p-4 border border-slate-100">
-                                                        <div className="flex justify-between text-sm mb-2">
-                                                            <span className="font-medium text-slate-700">主管下发目标进度</span>
-                                                            <span className="text-slate-500">{cycle.targetSetCount} / {cycle.totalEmployees} 人</span>
-                                                        </div>
-                                                        <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
-                                                            <div
-                                                                className="h-full bg-blue-500 rounded-full transition-all duration-500"
-                                                                style={{ width: `${(cycle.targetSetCount / cycle.totalEmployees) * 100}%` }}
-                                                            />
-                                                        </div>
-                                                        <div className="mt-3 text-xs text-amber-600 flex items-center bg-amber-50 px-2 py-1 rounded-md max-w-max border border-amber-100">
-                                                            ⚠️ 请催促未下发的主管尽快完成员工本月的基数与权重设定。
-                                                        </div>
-                                                    </div>
-                                                )}
                                             </div>
-
-                                            {/* Right Actions Area */}
-                                            <div className="w-full lg:w-48 bg-slate-50/50 p-6 flex flex-row lg:flex-col items-center justify-center gap-3">
-                                                {cycle.stage === 'goal_setting' && (
-                                                    <>
-                                                        <Button variant="outline" className="w-full bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-sm" asChild>
-                                                            <a href="/assessment/team">
-                                                                <Users className="mr-2 h-4 w-4 text-blue-500" />
-                                                                追踪宣发情况
-                                                            </a>
-                                                        </Button>
-                                                        <Button
-                                                            className="w-full bg-purple-600 hover:bg-purple-700 text-white shadow-sm"
-                                                            onClick={() => handlePushStage(cycle.id, 'evaluating')}
-                                                        >
-                                                            <PlayCircle className="mr-2 h-4 w-4" />
-                                                            转入评分阶段
-                                                        </Button>
-                                                    </>
-                                                )}
-                                                {cycle.stage === 'evaluating' && (
-                                                    <>
-                                                        <Button variant="outline" className="w-full bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-sm" asChild>
-                                                            <a href="/assessment/rating">
-                                                                <Eye className="mr-2 h-4 w-4 text-purple-600" />
-                                                                追踪打分情况
-                                                            </a>
-                                                        </Button>
-                                                        <Button
-                                                            className="w-full bg-slate-800 hover:bg-slate-900 text-white shadow-sm"
-                                                            onClick={() => handlePushStage(cycle.id, 'finished')}
-                                                        >
-                                                            <CheckCircle2 className="mr-2 h-4 w-4" />
-                                                            结案并归档
-                                                        </Button>
-                                                    </>
-                                                )}
-                                                {['finished', 'goal_confirming', 'ongoing'].includes(cycle.stage) && (
-                                                    <Button variant="ghost" className="w-full text-slate-500 hover:text-slate-900 flex justify-between">
-                                                        进入工作台
-                                                        <ChevronRight className="h-4 w-4" />
-                                                    </Button>
-                                                )}
-                                            </div>
+                                            {getStageBadge(cycle.stage)}
                                         </div>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    </div>
-                </TabsContent>
 
-                <TabsContent value="quarter" className="py-20 text-center">
-                    <p className="text-slate-500">当前组织尚未启用季度考核频率。</p>
-                </TabsContent>
-                <TabsContent value="half" className="py-20 text-center">
-                    <p className="text-slate-500">当前组织尚未启用半年度考核频率。</p>
-                </TabsContent>
-                <TabsContent value="year" className="py-20 text-center">
-                    <p className="text-slate-500">当前组织尚未启用年度考核频率。</p>
-                </TabsContent>
-            </Tabs>
+                                        {/* Sub Progress if in goal setting */}
+                                        {cycle.stage === 'goal_setting' && (
+                                            <div className="mt-4 bg-slate-50 rounded-lg p-4 border border-slate-100">
+                                                <div className="flex justify-between text-sm mb-2">
+                                                    <span className="font-medium text-slate-700">主管下发目标进度</span>
+                                                    <span className="text-slate-500">{cycle.targetSetCount} / {cycle.totalEmployees} 人</span>
+                                                </div>
+                                                <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+                                                    <div
+                                                        className="h-full bg-blue-500 rounded-full transition-all duration-500"
+                                                        style={{ width: `${(cycle.targetSetCount / cycle.totalEmployees) * 100}%` }}
+                                                    />
+                                                </div>
+                                                <div className="mt-3 text-xs text-amber-600 flex items-center bg-amber-50 px-2 py-1 rounded-md max-w-max border border-amber-100">
+                                                    ⚠️ 请催促未下发的主管尽快完成员工本月的基数与权重设定。
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Right Actions Area */}
+                                    <div className="w-full lg:w-48 bg-slate-50/50 p-6 flex flex-row lg:flex-col items-center justify-center gap-3">
+                                        {cycle.stage === 'goal_setting' && (
+                                            <>
+                                                <Button variant="outline" className="w-full bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-sm" asChild>
+                                                    <a href="/assessment/team">
+                                                        <Users className="mr-2 h-4 w-4 text-blue-500" />
+                                                        追踪宣发情况
+                                                    </a>
+                                                </Button>
+                                                <Button
+                                                    className="w-full bg-purple-600 hover:bg-purple-700 text-white shadow-sm"
+                                                    onClick={() => handlePushStage(cycle.id, 'evaluating')}
+                                                >
+                                                    <PlayCircle className="mr-2 h-4 w-4" />
+                                                    转入评分阶段
+                                                </Button>
+                                            </>
+                                        )}
+                                        {cycle.stage === 'evaluating' && (
+                                            <>
+                                                <Button variant="outline" className="w-full bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-sm" asChild>
+                                                    <a href="/assessment/rating">
+                                                        <Eye className="mr-2 h-4 w-4 text-purple-600" />
+                                                        追踪打分情况
+                                                    </a>
+                                                </Button>
+                                                <Button
+                                                    className="w-full bg-slate-800 hover:bg-slate-900 text-white shadow-sm"
+                                                    onClick={() => handlePushStage(cycle.id, 'finished')}
+                                                >
+                                                    <CheckCircle2 className="mr-2 h-4 w-4" />
+                                                    结案并归档
+                                                </Button>
+                                            </>
+                                        )}
+                                        {['finished', 'goal_confirming', 'ongoing'].includes(cycle.stage) && (
+                                            <Button variant="ghost" className="w-full text-slate-500 hover:text-slate-900 flex justify-between">
+                                                进入工作台
+                                                <ChevronRight className="h-4 w-4" />
+                                            </Button>
+                                        )}
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }

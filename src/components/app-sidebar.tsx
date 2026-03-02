@@ -8,14 +8,9 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { BarChart3, Users, Settings, Home, FileText, Target, CalendarDays, Star } from "lucide-react"
+import { Users, FileText, Target, CalendarDays, Star } from "lucide-react"
 
 const items = [
-    {
-        title: "总览面板",
-        url: "/",
-        icon: Home,
-    },
     {
         title: "企业指标元数据库",
         url: "/library",
@@ -45,16 +40,6 @@ const items = [
         title: "团队绩效评定打分",
         url: "/assessment/rating",
         icon: Star,
-    },
-    {
-        title: "绩效统计大盘",
-        url: "/stats",
-        icon: BarChart3,
-    },
-    {
-        title: "系统设置",
-        url: "#",
-        icon: Settings,
     },
 ]
 
