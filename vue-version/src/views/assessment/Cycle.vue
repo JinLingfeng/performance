@@ -2,16 +2,13 @@
 import { ref } from 'vue'
 import {
   CalendarDays,
-  Plus,
   Clock,
   Users,
   PlayCircle,
   Eye,
   ChevronRight,
   CheckCircle2,
-  FileText,
   Info,
-  BarChart3,
 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'

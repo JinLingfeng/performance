@@ -7,7 +7,6 @@ import {
   Calculator,
   ArrowRight,
   Wallet,
-  Star,
   Target,
   TrendingUp,
   Award,

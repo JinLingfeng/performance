@@ -148,11 +148,7 @@ const filteredIndicators = computed(() => {
   return resultIndicators
 })
 
-const stats = computed(() => ({
-  total: employees.length,
-  rated: employees.filter((e) => e.status === 'rated').length,
-  pending: employees.filter((e) => e.status === 'pending_rate').length,
-}))
+
 
 
 const getScoreGrade = (score: number) => {
