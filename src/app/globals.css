@@ -124,3 +124,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Subtle dot-grid background pattern */
+body {
+  background-color: #f8fafc;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.08), transparent),
+    radial-gradient(circle, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px;
+  background-attachment: fixed;
+}
+
+/* Scrollbar tweaks */
+html, body {
+  overflow-y: scroll !important;
+}

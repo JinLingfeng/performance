@@ -1,156 +1,200 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
-import { CheckCircle2, Clock, PlayCircle, Users } from "lucide-react"
+import { CalendarDays, CheckCircle2, FileText, Target, Users, Star, ArrowRight, BookOpen, Layers } from "lucide-react"
+import Link from "next/link"
 
 export default function Dashboard() {
   return (
-    <div className="space-y-6 animate-in fade-in duration-500">
+    <div className="space-y-6 max-w-7xl mx-auto px-4 xl:px-8 pb-20 animate-in fade-in duration-500">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">绩效总览</h2>
-        <p className="text-muted-foreground mt-1">
-          当前考核周期：2026年上半年（Q1-Q2）
+        <h2 className="text-2xl font-bold tracking-tight text-slate-900">欢迎来到卓希集团绩效管理平台</h2>
+        <p className="text-slate-500 mt-1">
+          当前进行中的考核周期：2026年3月份初级销售KPI考核
         </p>
       </div>
 
       {/* Stats Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="hover:border-blue-200 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">参与考核总人数</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-slate-700">活跃考核周期</CardTitle>
+            <CalendarDays className="h-4 w-4 text-blue-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">128</div>
-            <p className="text-xs text-muted-foreground mt-1">较上周期增长 4%</p>
+            <div className="text-2xl font-bold text-slate-900">1 <span className="text-sm font-normal text-slate-500 ml-1">个进行中</span></div>
+            <Link href="/assessment/cycle" className="text-xs text-blue-600 hover:text-blue-700 mt-2 inline-flex items-center">
+              前往控制台管理 <ArrowRight className="ml-1 h-3 w-3" />
+            </Link>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="hover:border-amber-200 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">考核完成率</CardTitle>
-            <CheckCircle2 className="h-4 w-4 text-green-600" />
+            <CardTitle className="text-sm font-medium text-slate-700">待我确认目标</CardTitle>
+            <Target className="h-4 w-4 text-amber-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">76%</div>
-            <Progress value={76} className="mt-2 text-green-600" />
+            <div className="text-2xl font-bold text-slate-900">1 <span className="text-sm font-normal text-slate-500 ml-1">项待签</span></div>
+            <Link href="/assessment/my" className="text-xs text-amber-600 hover:text-amber-700 mt-2 inline-flex items-center">
+              立即前往确认 <ArrowRight className="ml-1 h-3 w-3" />
+            </Link>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="hover:border-purple-200 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">待我处理</CardTitle>
-            <Clock className="h-4 w-4 text-orange-500" />
+            <CardTitle className="text-sm font-medium text-slate-700">待我评价打分</CardTitle>
+            <Star className="h-4 w-4 text-purple-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted-foreground mt-1">需在本周五前完成审批</p>
+            <div className="text-2xl font-bold text-slate-900">2 <span className="text-sm font-normal text-slate-500 ml-1">人待评</span></div>
+            <Link href="/assessment/rating" className="text-xs text-purple-600 hover:text-purple-700 mt-2 inline-flex items-center">
+              前往打分大厅 <ArrowRight className="ml-1 h-3 w-3" />
+            </Link>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="hover:border-emerald-200 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">S/A级比例</CardTitle>
-            <PlayCircle className="h-4 w-4 text-blue-500" />
+            <CardTitle className="text-sm font-medium text-slate-700">企业指标总库</CardTitle>
+            <BookOpen className="h-4 w-4 text-emerald-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">24%</div>
-            <p className="text-xs text-muted-foreground mt-1">目标比例：不超过25%</p>
+            <div className="text-2xl font-bold text-slate-900">124 <span className="text-sm font-normal text-slate-500 ml-1">个元指标</span></div>
+            <Link href="/library" className="text-xs text-emerald-600 hover:text-emerald-700 mt-2 inline-flex items-center">
+              维护与新建规则 <ArrowRight className="ml-1 h-3 w-3" />
+            </Link>
           </CardContent>
         </Card>
       </div>
 
       {/* Main Content Area */}
-      <div className="grid gap-4 md:grid-cols-7">
-        <Card className="md:col-span-5">
+      <div className="grid gap-6 md:grid-cols-12">
+        <Card className="md:col-span-8 shadow-sm">
           <CardHeader>
-            <CardTitle>最新考核动态</CardTitle>
+            <CardTitle className="text-lg">全景业务流程导航</CardTitle>
             <CardDescription>
-              列出最近提交或更新的下属绩效考核表
+              深入了解从指标设计到期末打分的完整管理闭环
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>姓名</TableHead>
-                  <TableHead>部门团队</TableHead>
-                  <TableHead>当前阶段</TableHead>
-                  <TableHead>综合自评</TableHead>
-                  <TableHead>初评建议</TableHead>
-                  <TableHead className="text-right">操作</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell className="font-medium">李建国</TableCell>
-                  <TableCell>研发中心 / 前端二组</TableCell>
-                  <TableCell><Badge variant="secondary">主管面审中</Badge></TableCell>
-                  <TableCell>A (超出预期)</TableCell>
-                  <TableCell>
-                    <span className="text-xs text-muted-foreground line-clamp-1 w-[160px]" title="该周期内核心业务重构贡献突出，建议给予A级绩效">
-                      该周期内核心业务重构贡献突出，建议给予A级绩效
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Button variant="ghost" size="sm">审核</Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">张晓梅</TableCell>
-                  <TableCell>产品部 / 用户增长组</TableCell>
-                  <TableCell><Badge variant="outline">等待自评</Badge></TableCell>
-                  <TableCell className="text-muted-foreground">-</TableCell>
-                  <TableCell className="text-muted-foreground">-</TableCell>
-                  <TableCell className="text-right">
-                    <Button variant="ghost" size="sm">提醒</Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">王大伟</TableCell>
-                  <TableCell>研发中心 / 后端架构</TableCell>
-                  <TableCell><Badge variant="default" className="bg-green-600">已完结</Badge></TableCell>
-                  <TableCell>B+ (符合预期)</TableCell>
-                  <TableCell>
-                    <span className="text-xs text-muted-foreground line-clamp-1 w-[160px]" title="基础设施稳定性达标，产出稳定">
-                      基础设施稳定性达标，产出稳定
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Button variant="ghost" size="sm">详情</Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">陈如一</TableCell>
-                  <TableCell>设计部 / UI体验组</TableCell>
-                  <TableCell><Badge variant="secondary">HR复核中</Badge></TableCell>
-                  <TableCell>A (超出预期)</TableCell>
-                  <TableCell>
-                    <span className="text-xs text-muted-foreground line-clamp-1 w-[160px]" title="主导的新版设计规范落地效果显著，团队协作成效好">
-                      主导的新版改版落地效果显著...
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Button variant="ghost" size="sm">详情</Button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+            <div className="relative border-l border-slate-200 ml-3 space-y-8 pb-4">
+
+              <div className="relative pl-6">
+                <span className="absolute -left-3 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 ring-8 ring-white">
+                  <BookOpen className="h-3 w-3 text-emerald-600" />
+                </span>
+                <h3 className="font-semibold text-slate-900">1. 指标元数据库建设</h3>
+                <p className="mt-1 text-sm text-slate-500">维护企业所有考核可能用到的元数据字典与提取规则。</p>
+                <Button variant="outline" size="sm" className="mt-3 text-slate-600" asChild>
+                  <Link href="/library">进入企业指标库</Link>
+                </Button>
+              </div>
+
+              <div className="relative pl-6">
+                <span className="absolute -left-3 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-100 ring-8 ring-white">
+                  <Layers className="h-3 w-3 text-indigo-600" />
+                </span>
+                <h3 className="font-semibold text-slate-900">2. 搭建考核模板</h3>
+                <p className="mt-1 text-sm text-slate-500">将指标按权重拼装为针对不同岗位的打分模板。</p>
+                <Button variant="outline" size="sm" className="mt-3 text-slate-600" asChild>
+                  <Link href="/template">进入考核模板配置</Link>
+                </Button>
+              </div>
+
+              <div className="relative pl-6">
+                <span className="absolute -left-3 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 ring-8 ring-white">
+                  <CalendarDays className="h-3 w-3 text-blue-600" />
+                </span>
+                <h3 className="font-semibold text-slate-900">3. HR 发起考核周期</h3>
+                <p className="mt-1 text-sm text-slate-500">新建考核月度、选定模板并向下属员工挂载。</p>
+                <Button variant="outline" size="sm" className="mt-3 text-slate-600" asChild>
+                  <Link href="/assessment/cycle">进入考核周期与发起</Link>
+                </Button>
+              </div>
+
+              <div className="relative pl-6">
+                <span className="absolute -left-3 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 ring-8 ring-white">
+                  <Users className="h-3 w-3 text-sky-600" />
+                </span>
+                <h3 className="font-semibold text-slate-900">4. 主管下达考核目标</h3>
+                <p className="mt-1 text-sm text-slate-500">部门负责人为下属的定量采集指标设定基准与要求值。</p>
+                <Button variant="outline" size="sm" className="mt-3 text-slate-600" asChild>
+                  <Link href="/assessment/team">进入团队目标设定</Link>
+                </Button>
+              </div>
+
+              <div className="relative pl-6">
+                <span className="absolute -left-3 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 ring-8 ring-white">
+                  <Target className="h-3 w-3 text-amber-600" />
+                </span>
+                <h3 className="font-semibold text-slate-900">5. 员工确认目标誓师</h3>
+                <p className="mt-1 text-sm text-slate-500">基层员工登录自身视角，签署自己这一个月的军令状。</p>
+                <Button variant="outline" size="sm" className="mt-3 text-slate-600" asChild>
+                  <Link href="/assessment/my">进入我的目标与确认</Link>
+                </Button>
+              </div>
+
+              <div className="relative pl-6">
+                <span className="absolute -left-3 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-purple-100 ring-8 ring-white">
+                  <Star className="h-3 w-3 text-purple-600" />
+                </span>
+                <h3 className="font-semibold text-slate-900">6. 期末评定主观打分</h3>
+                <p className="mt-1 text-sm text-slate-500">周期末，系统自动获取客观数据，由主管人工评判填报定性数据。</p>
+                <Button variant="outline" size="sm" className="mt-3 text-slate-600" asChild>
+                  <Link href="/assessment/rating">进入团队绩效评定打分</Link>
+                </Button>
+              </div>
+
+            </div>
           </CardContent>
         </Card>
 
-        <Card className="md:col-span-2">
+        <Card className="md:col-span-4 shadow-sm bg-slate-50/50">
           <CardHeader>
-            <CardTitle>快捷操作</CardTitle>
-            <CardDescription>高频管理入口</CardDescription>
+            <CardTitle>最新进度通报</CardTitle>
+            <CardDescription>当前周期各流程进展状况</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4 flex flex-col">
-            <Button variant="outline" className="justify-start w-full">发起新一轮考核</Button>
-            <Button variant="outline" className="justify-start w-full">配置评估模板</Button>
-            <Button variant="outline" className="justify-start w-full">导出本月考核报表</Button>
-            <Button variant="default" className="justify-start w-full mt-4">批量审批建议 (5)</Button>
+          <CardContent className="space-y-6">
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm">
+                <span className="font-medium text-slate-700">全员目标设定完成率</span>
+                <span className="text-blue-600 font-bold">12 / 45</span>
+              </div>
+              <Progress value={26} className="h-2 bg-slate-200" />
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm">
+                <span className="font-medium text-slate-700">员工誓师确认率</span>
+                <span className="text-amber-600 font-bold">1 / 12</span>
+              </div>
+              <Progress value={8} className="h-2 bg-slate-200 [&>div]:bg-amber-500" />
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm">
+                <span className="font-medium text-slate-700">期末打分完成率</span>
+                <span className="text-purple-600 font-bold">0 / 45</span>
+              </div>
+              <Progress value={0} className="h-2 bg-slate-200 [&>div]:bg-purple-500" />
+            </div>
+
+            <div className="rounded-xl border border-blue-100 bg-blue-50 p-4 mt-8">
+              <div className="flex gap-3">
+                <CheckCircle2 className="h-5 w-5 text-blue-600 shrink-0" />
+                <div>
+                  <h4 className="font-semibold text-blue-900 text-sm">系统通知</h4>
+                  <p className="mt-1 text-sm text-blue-700 leading-relaxed">
+                    本系统全流程模块（指标库 - 模板 - 发起 - 下达 - 确认 - 评价）均已开发演示完毕。请根据左侧全景导航逐一点击体验。
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </CardContent>
         </Card>
       </div>

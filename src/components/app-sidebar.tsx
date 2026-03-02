@@ -8,7 +8,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { BarChart3, Users, Settings, Home, FileText } from "lucide-react"
+import { BarChart3, Users, Settings, Home, FileText, Target, CalendarDays, Star } from "lucide-react"
 
 const items = [
     {
@@ -17,18 +17,38 @@ const items = [
         icon: Home,
     },
     {
-        title: "我的目标与考核",
-        url: "#",
+        title: "企业指标元数据库",
+        url: "/library",
         icon: FileText,
     },
     {
-        title: "下属考核管理",
-        url: "#",
+        title: "考核模板配置",
+        url: "/template",
+        icon: FileText,
+    },
+    {
+        title: "考核周期与发起",
+        url: "/assessment/cycle",
+        icon: CalendarDays,
+    },
+    {
+        title: "团队目标设定大厅",
+        url: "/assessment/team",
         icon: Users,
     },
     {
+        title: "我的考核目标与结果",
+        url: "/assessment/my",
+        icon: Target,
+    },
+    {
+        title: "团队绩效评定打分",
+        url: "/assessment/rating",
+        icon: Star,
+    },
+    {
         title: "绩效统计大盘",
-        url: "#",
+        url: "/stats",
         icon: BarChart3,
     },
     {
@@ -43,7 +63,7 @@ export function AppSidebar() {
         <Sidebar>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel className="text-sm font-semibold text-primary">知数绩效管理</SidebarGroupLabel>
+                    <SidebarGroupLabel className="text-sm font-semibold text-primary">卓希集团绩效管理</SidebarGroupLabel>
                     <SidebarGroupContent className="mt-2">
                         <SidebarMenu>
                             {items.map((item) => (

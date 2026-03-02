@@ -25,12 +25,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className="antialiased bg-slate-50 min-h-screen">
+      <body className="antialiased min-h-screen" style={{ backgroundColor: '#f8fafc' }}>
         <TooltipProvider>
           <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
-              <header className="flex h-14 shrink-0 items-center gap-2 border-b bg-white px-4 shadow-sm">
+              {/* Decorative background pattern */}
+              <div
+                className="fixed inset-0 pointer-events-none z-0"
+                style={{
+                  backgroundImage: [
+                    'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.07), transparent)',
+                    'radial-gradient(circle, rgba(148, 163, 184, 0.15) 1px, transparent 1px)',
+                  ].join(', '),
+                  backgroundSize: '100% 100%, 20px 20px',
+                }}
+              />
+              <header className="flex h-14 shrink-0 items-center gap-2 border-b bg-white/80 backdrop-blur-sm px-4 shadow-sm relative z-10">
                 <SidebarTrigger className="-ml-1" />
                 <Separator orientation="vertical" className="mr-2 h-4" />
                 <Breadcrumb>
@@ -45,7 +56,7 @@ export default function RootLayout({
                   </BreadcrumbList>
                 </Breadcrumb>
               </header>
-              <div className="flex flex-1 flex-col p-4 md:p-6 pb-12 w-full max-w-7xl mx-auto">
+              <div className="flex flex-1 flex-col p-4 md:p-6 pb-12 w-full max-w-7xl mx-auto relative z-10">
                 {children}
               </div>
             </SidebarInset>
