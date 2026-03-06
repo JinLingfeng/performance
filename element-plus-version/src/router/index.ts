@@ -22,8 +22,8 @@ const router = createRouter({
                     component: () => import('@/views/assessment/Cycle.vue'),
                 },
                 {
-                    path: '/assessment/cycle/:id/stats',
-                    name: 'assessment-cycle-stats',
+                    path: '/assessment/cycle/:id',
+                    name: 'assessment-cycle-detail',
                     component: () => import('@/views/assessment/CycleDashboard.vue'),
                 },
                 {

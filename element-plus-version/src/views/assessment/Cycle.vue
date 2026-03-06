@@ -3,10 +3,8 @@ import { ref } from 'vue'
 import {
   CalendarDays,
   Clock,
-  Users,
   PlayCircle,
   Eye,
-  ChevronRight,
   CheckCircle2,
   Info,
   BarChart3,
@@ -20,10 +18,22 @@ const router = useRouter()
 // Cycles data
 const initialCycles = [
   {
+    id: 'cyc-202604',
+    name: '2026年4月份全公司月度绩效考核',
+    period: '2026/04/01 - 2026/04/30',
+    stage: 'pending', // pending | goal_setting | evaluating | finished
+    templateNames: [
+      '大客KA中心通用考核模板',
+    ],
+    totalEmployees: 48,
+    targetSetCount: 0,
+    targetConfirmedCount: 0,
+  },
+  {
     id: 'cyc-202603',
     name: '2026年3月份全公司月度绩效考核',
     period: '2026/03/01 - 2026/03/31',
-    stage: 'goal_setting', // goal_setting | goal_confirming | ongoing | evaluating | finished
+    stage: 'goal_setting', 
     templateNames: [
       '大客KA中心通用考核模板',
       '餐饮中心业务专员月度考核表',
@@ -191,13 +201,30 @@ const handlePushStage = (id: string, newStage: string) => {
                     <div
                       class="w-full lg:w-48 bg-slate-50/50 p-6 flex flex-row lg:flex-col items-center justify-center gap-3"
                     >
+                      <template v-if="cycle.stage === 'pending'">
+                        <el-button
+                          class="w-full !ml-0 !bg-white hover:!bg-slate-50 !text-slate-700 !border-slate-200 shadow-sm"
+                          @click="router.push(`/assessment/cycle/${cycle.id}`)"
+                        >
+                          <Eye class="mr-2 h-4 w-4 text-slate-500" />
+                          周期详情
+                        </el-button>
+                        <el-button
+                          type="primary"
+                          class="w-full !ml-0 !bg-blue-600 hover:!bg-blue-700 !text-white shadow-sm !border-none"
+                          @click="handlePushStage(cycle.id, 'goal_setting')"
+                        >
+                          <PlayCircle class="mr-2 h-4 w-4" />
+                          开启目标设定
+                        </el-button>
+                      </template>
                       <template v-if="cycle.stage === 'goal_setting'">
                         <el-button
                           class="w-full !ml-0 !bg-white hover:!bg-slate-50 !text-slate-700 !border-slate-200 shadow-sm"
-                          @click="router.push('/assessment/hall')"  
+                          @click="router.push(`/assessment/cycle/${cycle.id}`)"  
                         >
-                          <Users class="mr-2 h-4 w-4 text-blue-500" />
-                          追踪宣发情况
+                          <Eye class="mr-2 h-4 w-4 text-slate-500" />
+                          周期详情
                         </el-button>
                         <el-button
                           type="primary"
@@ -205,23 +232,16 @@ const handlePushStage = (id: string, newStage: string) => {
                           @click="handlePushStage(cycle.id, 'evaluating')"
                         >
                           <PlayCircle class="mr-2 h-4 w-4" />
-                          转入评分阶段
+                          开启绩效打分
                         </el-button>
                       </template>
                       <template v-else-if="cycle.stage === 'evaluating'">
                         <el-button
                           class="w-full !ml-0 !bg-white hover:!bg-slate-50 !text-slate-700 !border-slate-200 shadow-sm"
-                          @click="router.push('/assessment/hall')"
+                          @click="router.push(`/assessment/cycle/${cycle.id}`)"
                         >
-                          <Eye class="mr-2 h-4 w-4 text-purple-600" />
-                          追踪打分情况
-                        </el-button>
-                        <el-button
-                          class="w-full !ml-0 !bg-white hover:!bg-slate-50 !text-slate-700 !border-slate-200 shadow-sm"
-                          @click="router.push(`/assessment/cycle/${cycle.id}/stats`)"
-                        >
-                          <BarChart3 class="mr-2 h-4 w-4 text-amber-500" />
-                          查看绩效大盘
+                          <Eye class="mr-2 h-4 w-4 text-slate-500" />
+                          周期详情
                         </el-button>
                         <el-button
                           type="primary"
@@ -229,34 +249,16 @@ const handlePushStage = (id: string, newStage: string) => {
                           @click="handlePushStage(cycle.id, 'finished')"
                         >
                           <CheckCircle2 class="mr-2 h-4 w-4" />
-                          结案并归档
+                          关闭本周期
                         </el-button>
                       </template>
                       <template v-else-if="cycle.stage === 'finished'">
                         <el-button
                           class="w-full !ml-0 !bg-white hover:!bg-slate-50 !text-slate-700 !border-slate-200 shadow-sm"
-                          @click="router.push(`/assessment/cycle/${cycle.id}/stats`)"
+                          @click="router.push(`/assessment/cycle/${cycle.id}`)"
                         >
                           <BarChart3 class="mr-2 h-4 w-4 text-emerald-500" />
-                          查看历史大盘
-                        </el-button>
-                        <el-button
-                          text
-                          class="w-full !ml-0 !text-slate-500 hover:!text-slate-900 flex justify-between group"
-                          @click="router.push('/assessment/hall')"
-                        >
-                          进入工作台
-                          <ChevronRight class="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                        </el-button>
-                      </template>
-                      <template v-else>
-                        <el-button
-                          text
-                          class="w-full !text-slate-500 hover:!text-slate-900 flex justify-between group"
-                          @click="router.push('/assessment/hall')"
-                        >
-                          进入工作台
-                          <ChevronRight class="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                          查看绩效结果
                         </el-button>
                       </template>
                     </div>
