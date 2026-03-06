@@ -126,7 +126,7 @@ const handlePublish = () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-50/50 pb-20">
+  <div class="h-full overflow-y-auto bg-slate-50/50 pb-20">
     <!-- Sticky Header -->
     <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 px-8 py-4 flex items-center justify-between shadow-sm">
       <div class="flex items-center gap-4">

@@ -8,7 +8,7 @@ const activeTab = ref('library')
 </script>
 
 <template>
-  <div class="p-8 h-full flex flex-col gap-6 animate-in fade-in duration-500">
+  <div class="p-8 h-full flex flex-col gap-6 overflow-y-auto animate-in fade-in duration-500">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="bg-indigo-600 p-2.5 rounded-2xl shadow-lg shadow-indigo-100">

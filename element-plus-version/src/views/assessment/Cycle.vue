@@ -10,6 +10,7 @@ import {
   BarChart3,
 } from 'lucide-vue-next'
 import { useRouter } from 'vue-router'
+import { ElMessageBox, ElMessage } from 'element-plus'
 
 const router = useRouter()
 
@@ -86,7 +87,43 @@ const getStageBadge = (stage: string) => {
 }
 
 const handlePushStage = (id: string, newStage: string) => {
-  cycles.value = cycles.value.map((c) => (c.id === id ? { ...c, stage: newStage } : c))
+  let title = ''
+  let message = ''
+  let confirmButtonText = '确定'
+  let type: 'warning' | 'success' | 'info' | 'error' = 'warning'
+
+  if (newStage === 'goal_setting') {
+    title = '开启目标设定'
+    message = '确定要进入目标设定阶段吗？开启后，各级主管将收到通知并开始为下属设定本月指标及权重。'
+    confirmButtonText = '立即开启'
+  } else if (newStage === 'evaluating') {
+    title = '开启绩效打分'
+    message = '确定要进入绩效打分阶段吗？开启后，系统将正式根据业务数据初算得分，并开放主管主观评价入口。'
+    confirmButtonText = '进入考核'
+    type = 'success'
+  } else if (newStage === 'finished') {
+    title = '关闭本周期'
+    message = '确定要关闭并归档本考核周期吗？关闭后，所有评分将正式锁定，不可再进行修改，仅供后续查阅。'
+    confirmButtonText = '确认归档'
+    type = 'info'
+  }
+
+  ElMessageBox.confirm(message, title, {
+    confirmButtonText,
+    cancelButtonText: '取消',
+    type,
+    roundButton: true,
+  })
+    .then(() => {
+      cycles.value = cycles.value.map((c) => (c.id === id ? { ...c, stage: newStage } : c))
+      ElMessage({
+        type: 'success',
+        message: `${title}成功`,
+      })
+    })
+    .catch(() => {
+      // User canceled
+    })
 }
 </script>
 
