@@ -17,6 +17,16 @@ const router = createRouter({
                     component: () => import('@/views/PerformanceConfig.vue'),
                 },
                 {
+                    path: '/assessment/cycle',
+                    name: 'assessment-cycle',
+                    component: () => import('@/views/assessment/Cycle.vue'),
+                },
+                {
+                    path: '/assessment/cycle/:id/stats',
+                    name: 'assessment-cycle-stats',
+                    component: () => import('@/views/assessment/CycleDashboard.vue'),
+                },
+                {
                     path: '/assessment/hall',
                     name: 'assessment-hall',
                     component: () => import('@/views/assessment/PerformanceHall.vue'),
