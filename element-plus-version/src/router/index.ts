@@ -32,6 +32,16 @@ const router = createRouter({
                     component: () => import('@/views/assessment/PerformanceHall.vue'),
                 },
                 {
+                    path: '/daily-report',
+                    name: 'daily-report-list',
+                    component: () => import('@/views/report/DailyReportList.vue'),
+                },
+                {
+                    path: '/daily-report/fill',
+                    name: 'daily-report-fill',
+                    component: () => import('@/views/report/DailyReportForm.vue'),
+                },
+                {
                     path: '/template/builder',
                     name: 'template-builder',
                     component: () => import('@/views/template/Builder.vue'),

@@ -14,6 +14,7 @@ const route = useRoute()
 const isCollapsed = ref(false)
 
 const menuItems = [
+  { name: '工作日报', path: '/daily-report', icon: ClipboardList },
   { name: '绩效配置中心', path: '/configuration', icon: Settings },
   { name: '考核周期管理', path: '/assessment/cycle', icon: CalendarDays },
   { name: '绩效工作台', path: '/assessment/hall', icon: LayoutDashboard },
