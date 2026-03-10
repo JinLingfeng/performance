@@ -187,8 +187,8 @@ const handleSubmit = () => {
         <div class="px-4 py-2.5 mt-4 text-[14px] text-[#808080] font-medium">今日工作陈述</div>
         <div class="bg-white border-y border-[#EBEBEB] p-4 space-y-6">
           <div class="space-y-2">
-            <div class=\"flex items-center gap-1.5 text-[15px] font-bold text-slate-800\">
-              今日总结 <span class=\"text-red-500\">*</span>
+            <div class="flex items-center gap-1.5 text-[15px] font-bold text-slate-800">
+              今日总结 <span class="text-red-500">*</span>
             </div>
             <el-input 
               v-model="summary" 
@@ -199,7 +199,7 @@ const handleSubmit = () => {
             />
           </div>
           <div class="space-y-2">
-            <div class=\"flex items-center gap-1.5 text-[15px] font-bold text-slate-800\">
+            <div class="flex items-center gap-1.5 text-[15px] font-bold text-slate-800">
               明日计划
             </div>
             <el-input 
@@ -220,7 +220,7 @@ const handleSubmit = () => {
           <div 
             v-for="(rec, index) in taskRecords" 
             :key="rec.id"
-            class=\"flex gap-4 px-5 py-5 active:bg-[#F9F9F9] transition-colors\"
+            class="flex gap-4 px-5 py-5 active:bg-[#F9F9F9] transition-colors"
             :class="index !== taskRecords.length - 1 ? 'border-b border-[#F0F0F0]' : ''"
           >
             <!-- Custom Timeline Node -->
@@ -236,8 +236,8 @@ const handleSubmit = () => {
                    <span class="text-[11px] font-bold text-[#3D7EFF]">{{ rec.time }}</span>
                 </div>
                 <div class="flex items-center gap-1 text-[#B2B2B2] text-[11px] font-medium">
-                  <MapPin class=\"h-3 w-3\" />
-                  <span class=\"truncate max-w-[120px]\">{{ rec.location }}</span>
+                  <MapPin class="h-3 w-3" />
+                  <span class="truncate max-w-[120px]">{{ rec.location }}</span>
                 </div>
               </div>
               <div class="text-[16px] font-black text-[#191919]">{{ rec.customer }}</div>
