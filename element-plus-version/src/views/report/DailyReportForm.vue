@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { 
   ArrowLeft, 
@@ -106,6 +106,21 @@ const formatDate = (dateStr: string) => {
   const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
   return `${dateStr} ${days[date.getDay()]}`
 }
+
+const dailySlogans = {
+  0: '蓄力前行，调整状态，满电开启新征程。', // 周日
+  1: '万事开头难，今日的坚持是成功的基石。', // 周一
+  2: '渐入佳境，让高效成为一种习惯。',     // 周二
+  3: '半周回顾，查漏补缺，精益求精。',     // 周三
+  4: '临门一脚，保持韧性，冲刺关键目标。',   // 周四
+  5: '硕果累累，用日报记录这一周的勋章。',   // 周五
+  6: '厚积薄发，深度思考，复盘即成长。'      // 周六
+}
+
+const currentSlogan = computed(() => {
+  const date = new Date(fillDate.value)
+  return dailySlogans[date.getDay() as keyof typeof dailySlogans] || '坚持记录，见证成长。'
+})
 </script>
 
 <template>
@@ -163,7 +178,7 @@ const formatDate = (dateStr: string) => {
                </div>
                <span class="text-sm font-black uppercase tracking-widest opacity-80">DAILY PERFORMANCE</span>
             </div>
-            <h2 class="text-3xl font-black mb-2">坚持记录，见证成长。</h2>
+            <h2 class="text-3xl font-black mb-2">{{ currentSlogan }}</h2>
             <p class="text-indigo-100 font-medium max-w-lg">
               今日填报将自动关联「{{ formatDate(fillDate!) }}」的考核数据。手动项请根据公司基准真实填写，系统项数据已自动校准。
             </p>
