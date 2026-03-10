@@ -103,12 +103,7 @@ const handleSubmit = () => {
   })
 }
 
-const formatDate = (dateStr: string | null | undefined) => {
-  if (!dateStr) return ''
-  const date = new Date(dateStr)
-  const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
-  return `${dateStr} ${days[date.getDay()]}`
-}
+
 
 const dailySlogans = [
   '行而不辍，履践致远，每一份努力都在发光。',
@@ -216,10 +211,7 @@ const taskRecords = ref([
                </div>
                <span class="text-sm font-black uppercase tracking-widest opacity-80">DAILY PERFORMANCE</span>
             </div>
-            <h2 class="text-3xl font-black mb-2">{{ currentSlogan }}</h2>
-            <p class="text-indigo-100 font-medium max-w-lg">
-              今日填报将自动关联「{{ formatDate(fillDate!) }}」的考核数据。手动项请根据公司基准真实填写，系统项数据已自动校准。
-            </p>
+            <h2 class="text-3xl font-black mb-0">{{ currentSlogan }}</h2>
           </div>
           <!-- Decorative Icons -->
           <CheckCircle2 class="absolute -right-8 -bottom-8 h-48 w-48 text-white/10 rotate-12" />
