@@ -42,6 +42,11 @@ const router = createRouter({
                     component: () => import('@/views/report/DailyReportForm.vue'),
                 },
                 {
+                    path: '/daily-report/h5',
+                    name: 'daily-report-h5',
+                    component: () => import('@/views/report/DailyReportMobile.vue'),
+                },
+                {
                     path: '/template/builder',
                     name: 'template-builder',
                     component: () => import('@/views/template/Builder.vue'),

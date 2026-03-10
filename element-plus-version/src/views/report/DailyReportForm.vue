@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { 
   ArrowLeft, 
@@ -152,6 +152,13 @@ const taskRecords = ref([
     content: '新产品推介会，演示了智能家居模块。'
   }
 ])
+
+onMounted(() => {
+  // Mobile check
+  if (window.innerWidth < 768) {
+    router.replace('/daily-report/h5')
+  }
+})
 </script>
 
 <template>
@@ -163,24 +170,21 @@ const taskRecords = ref([
           <ArrowLeft class="h-4 w-4 text-slate-600" />
         </el-button>
         <div class="h-8 w-[1px] bg-slate-200 mx-1"></div>
-        <div>
-          <div class="flex items-center gap-3">
-            <h1 class="text-xl font-black text-slate-900 tracking-tight">绩效日报填报</h1>
-            <span class="text-xs font-bold text-slate-400 border-l border-slate-200 pl-3 mt-1 tracking-wider hidden md:inline-block">
-              「 {{ currentSlogan }} 」
-            </span>
-          </div>
-          <div class="flex items-center gap-2 mt-0.5">
-            <el-date-picker
-              v-model="fillDate"
-              type="date"
-              placeholder="选择日期"
-              format="YYYY-MM-DD"
-              value-format="YYYY-MM-DD"
-              class="custom-date-picker"
-              :clearable="false"
-            />
-          </div>
+        <div class="flex items-center gap-4">
+          <h1 class="text-xl font-black text-slate-900 tracking-tight">绩效日报填报</h1>
+          <span class="text-xs font-bold text-slate-400 border-l border-slate-200 pl-4 tracking-wider hidden lg:inline-block mt-0.5">
+            「 {{ currentSlogan }} 」
+          </span>
+          <div class="h-4 w-[1px] bg-slate-200 mx-2 hidden lg:block"></div>
+          <el-date-picker
+            v-model="fillDate"
+            type="date"
+            placeholder="选择日期"
+            format="YYYY-MM-DD"
+            value-format="YYYY-MM-DD"
+            class="custom-date-picker !w-36"
+            :clearable="false"
+          />
         </div>
       </div>
 
