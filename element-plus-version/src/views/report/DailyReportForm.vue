@@ -205,7 +205,9 @@ const taskRecords = ref([
         <div class="bg-indigo-600 rounded-[32px] p-8 text-white relative overflow-hidden shadow-2xl shadow-indigo-200/50">
           <div class="relative z-10">
 
-            <h2 class="text-3xl font-black mb-0">{{ currentSlogan }}</h2>
+            <h2 class="text-lg font-bold text-indigo-100/90 tracking-wide mb-0">
+              「 {{ currentSlogan }} 」
+            </h2>
           </div>
           <!-- Decorative Icons -->
           <CheckCircle2 class="absolute -right-8 -bottom-8 h-48 w-48 text-white/10 rotate-12" />
