@@ -9,7 +9,6 @@ import {
   Database,
   FileText,
   ClipboardCheck,
-  CheckCircle2,
   MapPin,
   History,
   Activity
@@ -165,7 +164,12 @@ const taskRecords = ref([
         </el-button>
         <div class="h-8 w-[1px] bg-slate-200 mx-1"></div>
         <div>
-          <h1 class="text-xl font-black text-slate-900 tracking-tight">绩效日报填报</h1>
+          <div class="flex items-center gap-3">
+            <h1 class="text-xl font-black text-slate-900 tracking-tight">绩效日报填报</h1>
+            <span class="text-xs font-bold text-slate-400 border-l border-slate-200 pl-3 mt-1 tracking-wider hidden md:inline-block">
+              「 {{ currentSlogan }} 」
+            </span>
+          </div>
           <div class="flex items-center gap-2 mt-0.5">
             <el-date-picker
               v-model="fillDate"
@@ -201,17 +205,7 @@ const taskRecords = ref([
     <div class="flex-1 overflow-y-auto p-8">
       <div class="max-w-4xl mx-auto space-y-8 animate-in fade-in zoom-in-95 duration-500">
         
-        <!-- Welcome Section -->
-        <div class="bg-indigo-600 rounded-[32px] p-8 text-white relative overflow-hidden shadow-2xl shadow-indigo-200/50">
-          <div class="relative z-10">
-
-            <h2 class="text-lg font-bold text-indigo-100/90 tracking-wide mb-0">
-              「 {{ currentSlogan }} 」
-            </h2>
-          </div>
-          <!-- Decorative Icons -->
-          <CheckCircle2 class="absolute -right-8 -bottom-8 h-48 w-48 text-white/10 rotate-12" />
-        </div>
+        <div class="h-4"></div>
 
         <!-- Tabs Section -->
         <div class="bg-white rounded-[32px] p-4 shadow-sm border border-slate-100">
