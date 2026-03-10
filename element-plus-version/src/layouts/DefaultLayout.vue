@@ -27,6 +27,7 @@ const menuItems = [
   <div class="flex h-screen bg-slate-50 overflow-hidden text-slate-900">
     <!-- Sidebar -->
     <aside 
+      v-if="route.path !== '/daily-report/h5'"
       :class="[
         'bg-white border-r border-slate-200 transition-all duration-300 flex flex-col z-30',
         isCollapsed ? 'w-20' : 'w-64'
