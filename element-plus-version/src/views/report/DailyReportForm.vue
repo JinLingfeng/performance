@@ -205,12 +205,7 @@ const taskRecords = ref([
         <!-- Welcome Section -->
         <div class="bg-indigo-600 rounded-[32px] p-8 text-white relative overflow-hidden shadow-2xl shadow-indigo-200/50">
           <div class="relative z-10">
-            <div class="flex items-center gap-3 mb-2">
-               <div class="bg-white/20 backdrop-blur-md p-1.5 rounded-lg">
-                 <Target class="h-5 w-5 text-white" />
-               </div>
-               <span class="text-sm font-black uppercase tracking-widest opacity-80">DAILY PERFORMANCE</span>
-            </div>
+
             <h2 class="text-3xl font-black mb-0">{{ currentSlogan }}</h2>
           </div>
           <!-- Decorative Icons -->
